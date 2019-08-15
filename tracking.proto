@@ -1,0 +1,25 @@
+syntax = "proto3";
+package tracking;
+
+// structure of the incoming request
+message TrackingRequest {
+    string user = 1;
+    string event = 2;
+    // can also be enum like so:
+    // enum event {
+    //  entity1 = 0; // must always begin with 0!
+    //  entity2 = 1;
+    // }
+    string timestamp = 3;
+    string url = 4;
+    repeated string stringArray = 5; // array of strings to contain any additional data
+}
+
+// structure of outgoing response
+message TrackingResponse {
+    int32 acknowledged = 1;
+}
+
+service Tracking {
+    rpc track(TrackingRequest) returns (TrackingResponse);
+}
