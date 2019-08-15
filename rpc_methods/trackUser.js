@@ -1,5 +1,7 @@
 module.exports = (call, callback) => {
+    console.log('request received with data', call.request);
+    // put to kafka topic
     callback(null, {
-        acknowledged: 1
+        acknowleged: 1
     });
 }

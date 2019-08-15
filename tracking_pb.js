@@ -348,7 +348,7 @@ proto.tracking.TrackingResponse.prototype.toObject = function(opt_includeInstanc
  */
 proto.tracking.TrackingResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    acknowledged: jspb.Message.getFieldWithDefault(msg, 1, 0)
+    acknowleged: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -387,7 +387,7 @@ proto.tracking.TrackingResponse.deserializeBinaryFromReader = function(msg, read
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setAcknowledged(value);
+      msg.setAcknowleged(value);
       break;
     default:
       reader.skipField();
@@ -418,7 +418,7 @@ proto.tracking.TrackingResponse.prototype.serializeBinary = function() {
  */
 proto.tracking.TrackingResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAcknowledged();
+  f = message.getAcknowleged();
   if (f !== 0) {
     writer.writeInt32(
       1,
@@ -429,16 +429,16 @@ proto.tracking.TrackingResponse.serializeBinaryToWriter = function(message, writ
 
 
 /**
- * optional int32 acknowledged = 1;
+ * optional int32 acknowleged = 1;
  * @return {number}
  */
-proto.tracking.TrackingResponse.prototype.getAcknowledged = function() {
+proto.tracking.TrackingResponse.prototype.getAcknowleged = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /** @param {number} value */
-proto.tracking.TrackingResponse.prototype.setAcknowledged = function(value) {
+proto.tracking.TrackingResponse.prototype.setAcknowleged = function(value) {
   jspb.Message.setProto3IntField(this, 1, value);
 };
 

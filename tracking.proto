@@ -17,7 +17,7 @@ message TrackingRequest {
 
 // structure of outgoing response
 message TrackingResponse {
-    int32 acknowledged = 1;
+    int32 acknowleged = 1;
 }
 
 service Tracking {
