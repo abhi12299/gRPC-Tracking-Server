@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "@grpc/grpc-js": "^0.3.6",
     "@grpc/proto-loader": "^0.3.0",
