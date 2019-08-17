@@ -3,13 +3,17 @@ const publisher = require('../redis/publisher');
 const grpc = require('grpc');
 
 module.exports = (call, callback) => {
-    publisher.publish(redisConfig.redisChannel, JSON.stringify(call.request), resp => {
-        console.log('redis response:', resp);
-        callback(null, {
-            acknowleged: 1
-        });
-        // callback(grpc.status.INTERNAL, {
-        //     acknowleged: 0
-        // });
+    publisher.publish(redisConfig.redisChannel, JSON.stringify(call.request), err => {
+        if (err) {
+            console.log('redis error:');
+            console.error(err);
+            callback(grpc.status.INTERNAL, {
+                acknowleged: 0
+            });
+        } else {
+            callback(null, {
+                acknowleged: 1
+            });
+        }
     });
 }
