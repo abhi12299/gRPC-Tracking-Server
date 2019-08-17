@@ -10,7 +10,8 @@ const UserEventsModel = require('./db/models/userEvents');
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
 const trackUser = require('./rpc_methods/trackUser');
-const consumer = require('./kafka/consumer');
+const redisConfig = require('./config/redisConf');
+const subscriber = require('./redis/subscriber');
 
 const packageDefinition = protoLoader.loadSync(
     PROTO_PATH,
@@ -37,17 +38,19 @@ if (require.main === module) {
   server.start();
   console.log('server started at port: 9090');
 
-  consumer.on('message', msg => {
-    // can process the message here and store in database
-    // or process the message and use producer to send back
-    // to kafka cluster to some other topic
-    // and construct complex data pipelines
-    const userEvent = JSON.parse(msg.value);
-    
-    const newEvent = new UserEventsModel(userEvent);
-    newEvent.save().then(() => {
-      console.log('event saved in the database');
-    });
+  subscriber.subscribe(redisConfig.redisChannel);
+
+  subscriber.on('message', (channel, msg) => {
+    // here we can process the message and publish it again to some other
+    // channel on redis and create streamlined data pipelines
+    if (channel === redisConfig.redisChannel) {
+      const userEvent = JSON.parse(msg);
+      
+      const newEvent = new UserEventsModel(userEvent);
+      newEvent.save().then(() => {
+        console.log('event saved in the database');
+      });
+    }
   });
 }
 

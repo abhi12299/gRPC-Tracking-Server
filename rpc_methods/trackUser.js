@@ -1,18 +1,15 @@
-const kafkaConfig = require('../config/kafkaConfig');
-const producer = require('../kafka/producer');
+const redisConfig = require('../config/redisConf');
+const publisher = require('../redis/publisher');
 const grpc = require('grpc');
 
 module.exports = (call, callback) => {
-    producer.send([{ topic: kafkaConfig.kafkaTopic, messages: JSON.stringify(call.request) }], (err, data) => {
-        if (err) {
-            console.log('kafka producer response:', { err, data });
-            callback(grpc.status.INTERNAL, {
-                acknowleged: 0
-            });
-        } else {
-            callback(null, {
-                acknowleged: 1
-            });
-        }
-    })
+    publisher.publish(redisConfig.redisChannel, JSON.stringify(call.request), resp => {
+        console.log('redis response:', resp);
+        callback(null, {
+            acknowleged: 1
+        });
+        // callback(grpc.status.INTERNAL, {
+        //     acknowleged: 0
+        // });
+    });
 }
