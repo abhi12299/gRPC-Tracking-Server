@@ -9,19 +9,11 @@ gRPC is an implementation of Remote Procedure Call by Google. Read more about it
 Well, to capture user activity on your website or any other platform. While there are other services such as Google Analytics that work great for getting anonymous user data, this can help you track your app's registered or even anonymous user data. The solution is horizontally scalable and relatively easy to get started with.
 
 ### 3. How?
-There are multiple branches in this repo. Check them out to see what technologies they use. This one(master) uses Kafka on the server side to create a simple data pipeline i.e. a producer sending message to a topic and a consumer storing it in MongoDB. With Kafka you can create complex data pipelines with ease and feed data to multiple sources in a sophisticated way.
-Now, there is quite some initial setup involved if you wish to move ahead with Kafka. Head over to `Install_instructions.md` for further instrcutions.
+There are multiple branches in this repo. Check them out to see what technologies they use. This one(redis) uses Redis on the server side to create a simple data pipeline i.e. a publisher sending message to a channel and a subscriber storing it in MongoDB. Head over to `Install_instructions.md` for further instrcutions.
 
 ### 4. Starting the server
-Start the kafka server
-
-`cd /usr/local/kafka`
-
-`bin/zookeeper-server-start.sh config/zookeeper.properties`
-
-`bin/kafka-server-start.sh config/server.properties`
-
-Keep it running! Don't quit it.
+Start the reids server
+`sudo service redis start`
 
 Envoy proxy! (Since browsers don't yet support HTTP/2, we need it to convert HTTP/2 to HTTP/1.1 and vice versa)
 cd to this directory.
