@@ -9,4 +9,6 @@ subscriber.once('error', err => {
     process.exit(1);
 });
 
+subscriber.subscribe(redisConfig.redisChannel);
+
 module.exports = subscriber;

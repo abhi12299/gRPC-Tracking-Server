@@ -38,8 +38,6 @@ if (require.main === module) {
   server.start();
   console.log('server started at port: 9090');
 
-  subscriber.subscribe(redisConfig.redisChannel);
-
   subscriber.on('message', (channel, msg) => {
     // here we can process the message and publish it again to some other
     // channel on redis and create streamlined data pipelines
