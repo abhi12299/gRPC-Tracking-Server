@@ -9,6 +9,7 @@ const UserEventsModel = require('./db/models/userEvents');
 
 const grpc = require('grpc');
 const protoLoader = require('@grpc/proto-loader');
+const cron = require('./cronjobs/cronJobHelper');
 const trackUser = require('./rpc_methods/trackUser');
 const consumer = require('./kafka/consumer');
 
@@ -37,18 +38,8 @@ if (require.main === module) {
   server.start();
   console.log('server started at port: 9090');
 
-  consumer.on('message', msg => {
-    // can process the message here and store in database
-    // or process the message and use producer to send back
-    // to kafka cluster to some other topic
-    // and construct complex data pipelines
-    const userEvent = JSON.parse(msg.value);
-    
-    const newEvent = new UserEventsModel(userEvent);
-    newEvent.save().then(() => {
-      console.log('event saved in the database');
-    });
-  });
+  // starting cron jobs!
+  cron.everyTenSeconds.start();
 }
 
 exports.getServer = getServer;
