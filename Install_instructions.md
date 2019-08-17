@@ -30,4 +30,5 @@
     sudo apt install docker
 
 ### 4. MongoDB
-    [Click here and follow instructions](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+
+Follow this [link](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) for MongoDB on ubuntu.
