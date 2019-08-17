@@ -4,6 +4,8 @@
 
 Client side code available [here](https://github.com/abhi12299/gRPC-Tracking-Client)
 
+**This branch uses cron job to consume batches of events from kafka. There are some issues associated with this. Check out `cronjobs/cronjobHelper.js` for the issue.**
+
 ### 1. What?
 gRPC is an implementation of Remote Procedure Call by Google. Read more about it [here](https://www.grpc.io/docs/tutorials/basic/node/). It uses HTTP/2 and protobufs to pass data to/from the client and the server, unlike REST which uses JSON. the data transmitted is binary and hence it is much faster as compared to JSON.
 
