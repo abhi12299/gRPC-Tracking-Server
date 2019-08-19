@@ -1,3 +1,4 @@
+const redisConfig = require('../config/redisConf');
 const redis = require('redis');
 // all defaults.. change accordingly
 const subscriber = redis.createClient();
