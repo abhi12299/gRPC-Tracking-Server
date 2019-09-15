@@ -13,6 +13,7 @@ message TrackingRequest {
     string timestamp = 3;
     string url = 4;
     repeated string stringArray = 5; // array of strings to contain any additional data
+    string data = 6;
 }
 
 // structure of outgoing response

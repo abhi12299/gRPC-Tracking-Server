@@ -10,6 +10,7 @@ const UserEventSchema = new Schema({
     event: { type: String, required: true, default: '' },
     timestamp: { type: Date, required: true, default: Date.now },
     url: { type: String, required: true, default: '' },
+    data: { type: String, default: '' },
     stringArray: { type: [String], required: false } // this mocks some metadata
 });
 
