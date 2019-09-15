@@ -26,7 +26,7 @@ cd to this directory.
 
 `npm start`
 
-## Extending the example
+## Extending the example <small>(For an extended example, checkout to redis branch)</small>
 1. Change the proto file to fit your needs. Read more about protobufs and data types [here](https://developers.google.com/protocol-buffers/docs/proto3)
 2. Use protoc to create `.js` files to be used in the client side. Run `protoc -I=. tracking.proto --js_out=import_style=commonjs:. --grpc-web_out=import_style=commonjs,mode=grpcwebtext:.`
 3. Go to client/ and paste the generated files in `src/grpc_autogen_files`.
